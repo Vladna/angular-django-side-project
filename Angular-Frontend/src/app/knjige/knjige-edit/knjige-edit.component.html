@@ -1,0 +1,76 @@
+<div *ngIf="knjiga!==undefined; else elseBlock">
+
+
+    <form [formGroup]="forma">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">ID: {{knjiga.KnjigaId}} </h5>
+            <button type="button" (click)="clearForma()" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
+        <div class="form-group">
+            <label for="KnjigaIme" class="col-form-label">Ime knjige:{{knjiga.KnjigaIme}}
+            </label>
+            <input formControlName="KnjigaIme" type="text" class="form-control" placeholder="{{knjiga.KnjigaIme}}">
+            <div *ngIf="forma.get('KnjigaIme').touched && forma.get('KnjigaIme').invalid" class="alert alert-danger">
+                Unesite
+                potrebne podatke </div>
+        </div>
+
+        <div class="form-group">
+            <label for="KnjigaAutor" class="col-form-label">Ime autora:</label>
+            <textarea formControlName="KnjigaAutor" class="form-control"
+                placeholder="{{knjiga.KnjigaAutor}}"></textarea>
+            <div *ngIf="forma.get('KnjigaAutor').touched && forma.get('KnjigaAutor').invalid"
+                class="alert alert-danger">
+                Unesite potrebne podatke </div>
+        </div>
+        <div class="form-group">
+            <label for="KnjigaStanje" class="col-form-label">Stanje:</label>
+            <textarea formControlName="KnjigaStanje" class="form-control"
+                placeholder="{{knjiga.KnjigaStanje}}"></textarea>
+            <div *ngIf="forma.get('KnjigaStanje').touched && forma.get('KnjigaStanje').invalid"
+                class="alert alert-danger">
+                Unesite potrebne podatke </div>
+        </div>
+        <div class="form-group">
+            <label for="KnjigaDatumIzdavanja" class="col-form-label">Knjiga datum izdavanja:</label>
+            <!--   <textarea formControlName="KnjigaDatumIzdavanja" class="form-control"
+                placeholder="{{knjiga.KnjigaDatumIzdavanja}}"></textarea> -->
+            <input placeholder="{{knjiga.KnjigaDatumIzdavanja}}" class="form-control"
+                formControlName="KnjigaDatumIzdavanja" type="date">
+            <div *ngIf="forma.get('KnjigaDatumIzdavanja').touched && forma.get('KnjigaDatumIzdavanja').invalid"
+                class="alert alert-danger">Unesite potrebne podatke </div>
+        </div>
+        <div class="form-group">
+            <label for="KnjigaDatumVracanja" class="col-form-label">Knjiga datum vracanja:</label>
+            <!--  <textarea formControlName="KnjigaDatumVracanja" class="form-control"
+                placeholder="{{knjiga.KnjigaDatumVracanja}}"></textarea> -->
+            <input placeholder="{{knjiga.KnjigaDatumVracanja}}" class="form-control"
+                formControlName="KnjigaDatumVracanja" type="date">
+
+
+            <div *ngIf="forma.get('KnjigaDatumVracanja').touched && forma.get('KnjigaDatumVracanja').invalid"
+                class="alert alert-danger">Unesite potrebne podatke </div>
+        </div>
+        <div class="form-group">
+            <label for="KnjiguIznajmio" class="col-form-label">Knjigu iznajmio:</label>
+            <textarea formControlName="KnjiguIznajmio" class="form-control"
+                placeholder="{{knjiga.KnjiguIznajmio}}"></textarea>
+            <div *ngIf="forma.get('KnjiguIznajmio').touched && forma.get('KnjiguIznajmio').invalid"
+                class="alert alert-danger">Unesite potrebne podatke </div>
+        </div>
+
+    </form>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="clearForma()" data-dismiss="modal">Zatvori</button>
+        <button type="button" [disabled]="forma.invalid" (click)="knjigaEdit(forma.value)"
+            class="btn btn-primary">Sacuvaj izmene</button>
+    </div>
+</div>
+
+<ng-template #elseBlock>
+    <h1>Error</h1>
+</ng-template>
